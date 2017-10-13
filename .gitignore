@@ -1,0 +1,20 @@
+# Files and directories created by pub
+.packages
+.pub/
+.idea/
+build/
+.buildlog
+# Remove the following pattern if you wish to check in your lock file
+pubspec.lock
+
+# Directory created by dartdoc
+doc/api/
+
+
+.project
+*.iml
+*.ipr
+*.iws
+.DS_Store
+analysis_options.yaml
+CHANGELOG.md

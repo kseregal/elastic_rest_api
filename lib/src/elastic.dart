@@ -1,3 +1,4 @@
+
 part of elastic_rest_api;
 
 final _responseDecoder = const Utf8Decoder().fuse(const JsonDecoder());
@@ -5,6 +6,8 @@ final _responseDecoder = const Utf8Decoder().fuse(const JsonDecoder());
 class ElasticRequest {
   final String host;
   final http.IOClient client;
+  final String _elasticLogin = "elastic";
+  final String _elasticPassword = "changeme";
 
   ElasticRequest(
       this.host,
@@ -25,9 +28,12 @@ class ElasticRequest {
       request.body = body;
     }
 
-    //todo: вынести логин и пароль в конфигурационный файл. Реализовать base64 кодирование.
 
-    request.headers['Authorization'] = 'Basic ZWxhc3RpYzpjaGFuZ2VtZQ==';
+
+
+    var _headerStr = UTF8.encode("$_elasticLogin:$_elasticPassword");
+    var _base64HeaderStr = BASE64.encode(_headerStr);
+    request.headers['Authorization'] = "Basic $_base64HeaderStr";
     print(request.toString());
 
     var response = await client.send(request);

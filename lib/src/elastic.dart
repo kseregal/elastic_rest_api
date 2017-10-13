@@ -24,6 +24,9 @@ class ElasticRequest {
       }
       request.body = body;
     }
+
+    //todo: вынести логин и пароль в конфигурационный файл. Реализовать base64 кодирование.
+
     request.headers['Authorization'] = 'Basic ZWxhc3RpYzpjaGFuZ2VtZQ==';
     print(request.toString());
 
@@ -43,4 +46,3 @@ class ElasticRequest {
     return responseBody;
   }
 }
-

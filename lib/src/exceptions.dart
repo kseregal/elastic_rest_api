@@ -24,13 +24,6 @@ class ElasticsearchException implements Exception {
   String toString() => message;
 }
 
-class IndexAlreadyExistsException extends ElasticsearchException {
-  final String index;
-
-  IndexAlreadyExistsException(String index, Map response) :
-        this.index = index,
-        super(response, 'Index [$index] already exists');
-}
 
 class IndexMissingException extends ElasticsearchException {
   final String index;

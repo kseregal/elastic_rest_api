@@ -5,13 +5,14 @@ final _responseDecoder = const Utf8Decoder().fuse(const JsonDecoder());
 
 class ElasticRequest {
   final String host;
+  final String _login;
+  final String _password;
   final http.IOClient client;
-  final String _elasticLogin = "elastic";
-  final String _elasticPassword = "changeme";
-
   ElasticRequest(
       this.host,
-      this.client);
+      this.client,
+      this._login,
+      this._password);
 
   Future get(String path) => _request('GET', path);
   Future post(String path, body) => _request('POST', path, body);
@@ -28,10 +29,7 @@ class ElasticRequest {
       request.body = body;
     }
 
-
-
-
-    var _headerStr = UTF8.encode("$_elasticLogin:$_elasticPassword");
+    var _headerStr = UTF8.encode("$_login:$_password");
     var _base64HeaderStr = BASE64.encode(_headerStr);
     request.headers['Authorization'] = "Basic $_base64HeaderStr";
     print(request.toString());

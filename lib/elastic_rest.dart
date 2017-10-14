@@ -16,5 +16,9 @@ class ElasticApi {
 
   ElasticRequest elasticRequest;
 
-  ElasticApi([String host, http.Client client])  : elasticRequest = new ElasticRequest(host,  client);
+  ElasticApi([
+    String host,
+    http.Client client,
+    String login,
+    String password])  : elasticRequest = new ElasticRequest(host,  client, login, password);
 }

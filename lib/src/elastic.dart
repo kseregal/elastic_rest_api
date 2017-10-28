@@ -41,13 +41,19 @@ class ElasticRequest {
     var responseBody = _responseDecoder.convert(await response.stream.toBytes());
     print(responseBody.toString());
     print(response.statusCode);
+
     if (response.statusCode >= 400) {
-      var error = responseBody['error'];
-      if ((error is String && error.startsWith('IndexMissingException'))
-          || (error is Map && error['type'] == 'index_missing_exception')) {
-        throw new IndexMissingException(responseBody);
+      if (response.statusCode == 404) {
+        /// Записи не найдены.
+      } else {
+        var error = responseBody['error'];
+        if ((error is String && error.startsWith('IndexMissingException'))
+            || (error is Map && error['type'] == 'index_missing_exception')) {
+          throw new IndexMissingException(responseBody);
+        }
       }
-      throw new ElasticsearchException(responseBody);
+
+      //throw new ElasticsearchException(responseBody);
     }
 
     return responseBody;

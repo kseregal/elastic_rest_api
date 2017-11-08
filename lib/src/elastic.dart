@@ -7,13 +7,11 @@ class ElasticRequest {
   final String host;
   final String _login;
   final String _password;
+  final http.Client client = new http.Client();
 
-  //todo: сделать возможность использования dart:html HttpRequest
 
-  final http.IOClient client;
   ElasticRequest(
       this.host,
-      this.client,
       this._login,
       this._password);
 

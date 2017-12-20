@@ -33,12 +33,12 @@ class ElasticRequest {
     var _headerStr = UTF8.encode("$_login:$_password");
     var _base64HeaderStr = BASE64.encode(_headerStr);
     request.headers['Authorization'] = "Basic $_base64HeaderStr";
-    print(request.toString());
+    //print(request.toString());
 
     var response = await client.send(request);
     var responseBody = _responseDecoder.convert(await response.stream.toBytes());
-    print(responseBody.toString());
-    print(response.statusCode);
+    //print(responseBody.toString());
+    //print(response.statusCode);
 
     if (response.statusCode >= 400) {
       if (response.statusCode == 404) {

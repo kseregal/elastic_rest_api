@@ -59,6 +59,9 @@ class ElasticRequest {
     } catch(e, stackTrace){
       print(e.toString());
       print(path.toString());
+      if (body != null) {
+        print(path.toString());
+      }
       print(stackTrace);
     }
 

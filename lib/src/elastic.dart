@@ -34,6 +34,8 @@ class ElasticRequest {
 
       var _headerStr = UTF8.encode("$_login:$_password");
       var _base64HeaderStr = BASE64.encode(_headerStr);
+      request.headers['Content-Type'] = "application/json";
+      request.headers['Accept'] = "application/json";
       request.headers['Authorization'] = "Basic $_base64HeaderStr";
       //print(request.toString());
 

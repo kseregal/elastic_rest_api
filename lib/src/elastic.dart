@@ -47,12 +47,15 @@ class ElasticRequest {
 
       if (response.statusCode >= 400) {
         if (response.statusCode == 404) {
-          /// Записи не найдены.
+          // Ничего не найдено.
+          //throw new ElasticsearchException(responseBody);
         } else {
           var error = responseBody['error'];
           if ((error is String && error.startsWith('IndexMissingException'))
               || (error is Map && error['type'] == 'index_missing_exception')) {
             throw new IndexMissingException(responseBody);
+          } else {
+            throw new Exception(responseBody);
           }
         }
 
